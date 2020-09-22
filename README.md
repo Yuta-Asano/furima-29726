@@ -17,7 +17,7 @@
 ## Association
 
 - has_many :items
-- has_one  :order
+- has_many  :orders
 
 ## items テーブル
 
@@ -30,12 +30,13 @@
 | delivery_fee_id   | integer    | null: false                    |
 | area_id           | integer    | null: false                    |
 | category_id       | integer    | null: false                    |
+| shipping_date_id  | integer    | null: false                    |
 | user              | references | null: false, foreign_key: true |
 
 
 ## Association
 
-- has_many :orders
+- has_one :order
 - belong_to :user
 
 ## orders テーブル
