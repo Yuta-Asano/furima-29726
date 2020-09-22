@@ -23,11 +23,10 @@
 
 | Column            | Type       | Options                        |
 | ----------------- | ---------- | ------------------------------ |
-| items_name        | string     | null: false                    |
-| image             | string     | null: false                    |
+| name              | string     | null: false                    |
 | price             | integer    | null: false                    |
-| items_information | text       | null: false                    |
-| items_status_id   | integer    | null: false                    |
+| information       | text       | null: false                    |
+| status_id         | integer    | null: false                    |
 | delivery_fee_id   | integer    | null: false                    |
 | area_id           | integer    | null: false                    |
 | category_id       | integer    | null: false                    |
@@ -36,7 +35,7 @@
 
 ## Association
 
-- has_one :order
+- has_many :orders
 - belong_to :user
 
 ## orders テーブル
@@ -50,18 +49,19 @@
 
 - belong_to :user
 - belong_to :item
+- has_one :address
 
 ## addresses テーブル
 
-| Column         | Type    | Options     |
-| -------------- | ------- | ----------- |
-| post_code      | string  | null: false |
-| city           | string  | null: false |
-| address        | string  | null: false |
-| building       | string  |             |
-| phone_number   | string  | null: false |
-| prefectures_id | integer | null: false |
-
+| Column         | Type       | Options                        |
+| -------------- | ---------- | ------------------------------ |
+| post_code      | string     | null: false                    |
+| city           | string     | null: false                    |
+| address        | string     | null: false                    |
+| building       | string     |                                |
+| phone_number   | string     | null: false                    |
+| prefectures_id | integer    | null: false                    |
+| item           | references | null: false, foreign_key: true |
 ### Association
 
 - belongs_to :order
