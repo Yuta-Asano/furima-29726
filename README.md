@@ -1,3 +1,4 @@
+
 # テーブル設計
 
 ## users テーブル
@@ -13,48 +14,55 @@
 | nicname         | string | null: false |
 | birthday        | date   | null: false |
 
-### Association
+## Association
 
 - has_many :items
-- has_one  :orders
+- has_one  :order
 
 ## items テーブル
 
-| Column            | Type    | Options     |
-| ----------------- | ------- | ----------- |
-| items_name        | string  | null: false |
-| image             | string  | null: false |
-| price             | integer | null: false |
-| items_information | text    | null: false |
+| Column            | Type       | Options                        |
+| ----------------- | ---------- | ------------------------------ |
+| items_name        | string     | null: false                    |
+| image             | string     | null: false                    |
+| price             | integer    | null: false                    |
+| items_information | text       | null: false                    |
+| items_status_id   | integer    | null: false                    |
+| delivery_fee_id   | integer    | null: false                    |
+| area_id           | integer    | null: false                    |
+| category_id       | integer    | null: false                    |
+| user              | references | null: false, foreign_key: true |
 
 
-### Association
+## Association
 
-- has_one :orders
-- belong_to :users
+- has_one :order
+- belong_to :user
 
-## order テーブル
+## orders テーブル
 
-| Column         | Type       | Options     |
-| -------------- | ---------- | ----------- |
-| buyer          | string     | null: false |
-| purchased_item | string     | null: false |
+| Column         | Type       | Options                        |
+| -------------- | ---------- | ------------------------------ |
+| user           | references | null: false, foreign_key: true |
+| item           | references | null: false, foreign_key: true |
 
-### Association
+## Association
 
-- belong_to :users
-- belong_to :items
+- belong_to :user
+- belong_to :item
 
 ## addresses テーブル
 
-| Column       | Type    | Options     |
-| ------------ | ------- | ----------- |
-| post_code    | string  | null: false |
-| city         | string  | null: false |
-| address      | string  | null: false |
-| building     | string  | null: false |
-| phone_number | integer | null: false |
+| Column         | Type    | Options     |
+| -------------- | ------- | ----------- |
+| post_code      | string  | null: false |
+| city           | string  | null: false |
+| address        | string  | null: false |
+| building       | string  |             |
+| phone_number   | string  | null: false |
+| prefectures_id | integer | null: false |
 
 ### Association
 
-- belongs_to :orders
+- belongs_to :order
+
