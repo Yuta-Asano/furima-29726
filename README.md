@@ -61,7 +61,7 @@
 | building       | string     |                                |
 | phone_number   | string     | null: false                    |
 | prefectures_id | integer    | null: false                    |
-| item           | references | null: false, foreign_key: true |
+| order          | references | null: false, foreign_key: true |
 ### Association
 
 - belongs_to :order
