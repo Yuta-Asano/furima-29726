@@ -21,21 +21,25 @@ class Item < ApplicationRecord
   end
 
   with_options presence: true do
-    validates  :name           
-    validates  :price, format: { with: /^[0-9]+$/, :greater_than_or_equal_to => 300, :less_than_or_equal_to => 9999999 }     
-    validates  :information  
-    validates  :area
-    validates  :category
-    validates  :delivery_fee
-    validates  :shipping_date
-    validates  :status
+    validates  :name         
+    validates  :price, format: { with: /\A^[0-9]+$\z/, message: 'Price Half-width number'}     
+    validates  :price, :numericality => {
+                       :greater_than_or_equal_to => 300,
+                       :less_than_or_equal_to => 9999999,
+                       :message => 'Price Out of setting range' }
+    validates  :information
+    validates  :area_id
+    validates  :category_id
+    validates  :delivery_fee_id
+    validates  :shipping_date_id
+    validates  :status_id
   end
 
-    with_options numericality: { other_than: 1 } do
+    with_options numericality: { other_than: 1 }  do
       validates  :area_id
       validates  :category_id
       validates  :delivery_fee_id
-      validates  :shipping_date_id
+      validates  :shipping_date_id 
       validates  :status_id
     end
 end
