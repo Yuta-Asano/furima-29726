@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  before_actrion :set_item, only: [:show, :edit, :update]
   def index
     @items = Item.all.order("created_at DESC")
   end
@@ -17,8 +18,17 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @items = Item.find(params[:id])
+  end
 
+  def edit
+  end
+
+  def update
+    if @items.update(item_params)
+      redirect_to item_path
+    else
+      render :edit
+    end
   end
 
   private
@@ -26,4 +36,9 @@ class ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:name, :price, :information, :image, :category_id, :status_id, :delivery_fee_id, :area_id, :shipping_date_id).merge(user_id: current_user.id)
   end
+
+  def set_tweet
+    @tweet = Tweet.find(params[:id])
+  end
+
 end
