@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
-  before_actrion :set_item, only: [:show, :edit, :update]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
+
   def index
     @items = Item.all.order("created_at DESC")
   end
@@ -23,6 +24,12 @@ class ItemsController < ApplicationController
   def edit
   end
 
+  def destroy
+    if @items.destroy
+      redirect_to root_path
+    end
+  end
+
   def update
     if @items.update(item_params)
       redirect_to item_path
@@ -37,8 +44,8 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:name, :price, :information, :image, :category_id, :status_id, :delivery_fee_id, :area_id, :shipping_date_id).merge(user_id: current_user.id)
   end
 
-  def set_tweet
-    @tweet = Tweet.find(params[:id])
+  def set_item
+    @items = Item.find(params[:id])
   end
 
 end
