@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   before_action :item_info, only: [:index, :create]
 
   def index
-   if current_user.id == @items.user_id || item_info.order.nil?
+   if current_user.id == @items.user_id || @items.order != nil
       redirect_to root_path
    end
    @address_credit = AddressCredit.new
