@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe AddressCredit, type: :model do
-  describe '商品購入機能' do
+  describe '#create' do
     before do
       @address_credit = FactoryBot.build(:address_credit)
     end
@@ -38,7 +38,7 @@ RSpec.describe AddressCredit, type: :model do
         @address_credit.valid?
         expect(@address_credit.errors.full_messages).to include('Post code Input correctly')
       end
-      it 'phone_numberはハイフンは不要で、11桁以内でないと登録できない' do
+      it 'phone_numberはハイフンは不要で、10桁、11桁以内でないと登録できない' do
         @address_credit.phone_number = '999-9999-9999'
         @address_credit.valid?
         expect(@address_credit.errors.full_messages).to include('Phone number Input only number')
