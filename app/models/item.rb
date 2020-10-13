@@ -20,7 +20,7 @@ class Item < ApplicationRecord
 
   with_options presence: true do
     validates  :name
-    validates  :price, numericality: { with: /\A[0-9]+\z/, message: 'Half-width number' }
+    validates  :price, numericality: { with: /\A[0-9]+\z/, message: '半角数字' }
     validates  :information
     validates  :area_id
     validates  :category_id
@@ -32,10 +32,10 @@ class Item < ApplicationRecord
   validates :price, numericality: {
     greater_than_or_equal_to: 300,
     less_than_or_equal_to: 9_999_999,
-    message: 'Out of setting range'
+    message: '価格設定の範囲外です'
   }
 
-  with_options numericality: { other_than: 1 } do
+  with_options numericality: { other_than: 1, message: '"--"以外を選択してください' } do
     validates  :area_id
     validates  :category_id
     validates  :delivery_fee_id

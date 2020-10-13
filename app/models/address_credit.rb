@@ -9,7 +9,7 @@ class AddressCredit
     validates :token
     validates :phone_number, numericality: { with: /\A\d{10,11}\z/, message: 'Input only number' } 
   end
-    with_options numericality: { other_than: 1 } do
+    with_options numericality: { other_than: 1, message: '"--"以外を選択してください'} do
       validates  :area_id
     end
 
