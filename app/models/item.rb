@@ -35,7 +35,7 @@ class Item < ApplicationRecord
     message: '価格設定の範囲外です'
   }
 
-  with_options numericality: { other_than: 1, message: '"--"以外を選択してください' } do
+  with_options numericality: { other_than: 1, message: 'は"--"以外を選択してください' } do
     validates  :area_id
     validates  :category_id
     validates  :delivery_fee_id

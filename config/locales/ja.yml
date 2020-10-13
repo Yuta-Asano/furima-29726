@@ -1,0 +1,22 @@
+ja:
+  activerecord:
+    attributes:
+      item:
+        image: 画像
+        name: 商品の名前
+        price: 値段
+        information: 商品の説明 
+        area_id: 発送元の地域
+        status_id: 商品の状態
+        delivery_fee_id: 発送料の負担
+        category_id: カテゴリー
+        shipping_date_id: 発送日
+        address_id: 住所       
+  attributes:
+        post_code: 郵便番号
+        city: 市区町村
+        address: 番地
+        token: クレジットカード情報
+        phone_number: 電話番号
+        building: 建物名   
+        area_id: 発送元の地域
